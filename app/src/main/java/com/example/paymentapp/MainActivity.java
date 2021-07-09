@@ -1,14 +1,18 @@
 package com.example.paymentapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.paymentapp.fragment.HistoryFragment;
+import com.example.paymentapp.fragment.HomeFragment;
+import com.example.paymentapp.fragment.PaymentFragment;
+import com.example.paymentapp.fragment.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,11 +22,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigationView = findViewById(R.id.bottomNavView);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home,R.id.navigation_pay,R.id.navigation_history,R.id.navigation_settings)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.frame_layout);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setSelectedItemId(R.id.navigation_home);
+
+        navigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.navigation_home:
+                    startActivity(new Intent(getApplicationContext(),
+                            HomeFragment.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.navigation_pay:
+                    startActivity(new Intent(getApplicationContext(),
+                            PaymentFragment.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.navigation_history:
+                    startActivity(new Intent(getApplicationContext(),
+                            HistoryFragment.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.navigation_settings:
+                    startActivity(new Intent(getApplicationContext(),
+                            SettingsFragment.class));
+                    overridePendingTransition(0,0);
+                    return true;
+
+            }
+            return false;
+        });
+
+
     }
 }

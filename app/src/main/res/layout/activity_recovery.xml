@@ -51,7 +51,7 @@
             android:text="send email"
             android:textSize="16dp"
             android:textAlignment="center"
-            android:textColor="@color/brown"
+            android:textColor="@color/light_brown"
             android:background="@drawable/rectangle_btn"
             android:layout_gravity="center"/>
 
